@@ -1,0 +1,29 @@
+运行webdriver.Chrome()时错误
+最近在写爬虫时，用到了webdriver.但会报错：没有谷歌二进制文件；
+这个一般是版本不匹配，或者环境没配置；如果不想去检查这些，那么我们可以用一段代码解决；
+
+# 给Chrome一个二进制
+options = webdriver.ChromeOptions()#启动参数
+options.binary_location = "谷歌安装路径"
+chrome_driver_binary = "chromedriver.exe路径"
+driver = webdriver.Chrome(chrome_driver_binary, chrome_options=options)
+这样就可以启动了，可以用以下代码测试
+
+#coding=utf-8
+from selenium import webdriver
+import time
+# 给Chrome一个二进制
+options = webdriver.ChromeOptions()#启动参数
+options.binary_location = "D:\Google\Chrome\Application\chrome.exe"
+chrome_driver_binary = "D:\Google\Chrome\Application\chromedriver.exe"
+driver = webdriver.Chrome(chrome_driver_binary, chrome_options=options)
+driver.get('http://www.baidu.com')
+# 延时5s
+time.sleep(5)
+driver.quit()
+
+这样就测试完成了，但建议有时间还是去看下版本，配置环境；
+完成后就可以用以下代码了
+
+driver = webdriver.Chrome()
+driver.get("https://www.douban.com/")
